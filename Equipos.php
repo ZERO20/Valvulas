@@ -1,9 +1,59 @@
+
 <?php
 include "php/conexion.php";
 $consulta="SELECT * FROM Equipos";
 $resultado=mysqli_query($conexion,$consulta);
+
+$consulta3="SELECT * FROM  Zona";
+$resultado3=mysqli_query($conexion,$consulta3);
+
+
+
 ?>
+
+
+
+
 <?php include "cabeza.inc"; ?>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" >AGREGAR EQUIPO</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title" id="myModalLabel">AGREGAR EQUIṔO</h4>
+      </div>
+      <div class="modal-body">
+    <form action="php/altaEquipo.php" method="post">
+        <input type="text" placeholder="SAP" name="sap" class="form-control" ><br>
+        <input type="text" placeholder="EQUIPO" name="equipo" class="form-control" ><br>
+        <select name="zona" class="form-control">
+            <?php 
+            while ($fila=mysqli_fetch_array($resultado3)){ ?>
+            <option value=<?php echo $fila['id']?>><?php echo $fila['bateria'] ?></option>
+            <?php 
+            } 
+             ?>
+            
+        </select>
+
+        <input type="submit" >
+
+
+
+
+
+
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div></br></br></br>
+
 <table id="example" class="display" cellspacing="0" width="100%">
     <thead>
     <tr>
